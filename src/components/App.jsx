@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
-import Profile from "./github/Profile.jsx"
+import Profile from "./github/Profile.jsx";
+import Search from "./github/Search.jsx";
 
 
 class App extends Component{
@@ -29,7 +30,7 @@ class App extends Component{
 				this.setState({
 					username: null
 				});
-				alert("error:"+err);
+				console.log("error:"+err);
 			}.bind(this)
 
 		})
@@ -43,7 +44,6 @@ class App extends Component{
 				this.setState({
 					userRepos: data
 				});
-				console.log(data,"repos");
 			}.bind(this),
 			error: function(xhr,status,err){
 				this.setState({
@@ -59,9 +59,19 @@ class App extends Component{
 		this.getUserData();
 		this.getUserRepos();
 	}
+	handleFormSubmit(username){
+		this.setState({
+				username
+		},function(){
+			this.getUserData();
+			this.getUserRepos();
+		});
+
+	}
 	render(){
 		return(
 			<div>
+				<Search onFormSubmit={this.handleFormSubmit.bind(this)} />
 				<Profile {...this.state} />
 			</div>
 		)
