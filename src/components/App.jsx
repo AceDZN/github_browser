@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from "jquery";
 import Profile from "./github/Profile.jsx";
 import Search from "./github/Search.jsx";
+import AceLogo from './AceLogo.jsx';
 
 
 class App extends Component{
@@ -73,7 +74,9 @@ class App extends Component{
 			<div>
 				<Search onFormSubmit={this.handleFormSubmit.bind(this)} />
 				<Profile {...this.state} />
+				<AceLogo />
 			</div>
+
 		)
 	}
 }
